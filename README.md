@@ -108,7 +108,7 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
 
     - Clone the github repo
        ``` 
-        > git clone https://github.com/rumiio/SageMaker_Custom_Container.git
+        > git clone https://github.com/aws-samples/amazon-sagemaker-custom-container.git
        ``` 
     - Run build_and_push.sh
         ``` 
