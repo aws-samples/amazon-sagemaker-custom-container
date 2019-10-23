@@ -1,0 +1,111 @@
+# use/edit this file only for working with fastai-0.7.x version
+# for fastai-1.0+ edit "setup.py" and use "pip install -e ."
+# or "pip install -e .[dev]" for extra developer requirements
+name: fastai-cpu
+channels:
+- fastai
+- pytorch
+- defaults
+- peterjc123
+dependencies:
+- scipy
+- numpy
+- pillow
+- jpeg
+- spacy
+- zlib
+- freetype
+- libtiff
+- bleach
+- certifi
+- cffi
+- cycler
+- decorator
+- entrypoints
+- expat
+- html5lib
+- icu
+- defaults::intel-openmp
+- ipykernel
+- ipython
+- ipython_genutils
+- ipywidgets
+- jedi
+- jinja2
+- jsonschema
+- jupyter
+- jupyter_client
+- jupyter_console
+- jupyter_core
+- conda-forge::jupyter_contrib_nbextensions
+- libiconv
+- libpng
+- libsodium
+- libxml2
+- markupsafe
+- matplotlib
+- mistune
+- mkl
+- nbconvert
+- nbformat
+- notebook
+- numpy
+- olefile
+- openssl
+- pandas
+- pandocfilters
+- path.py
+- patsy
+- pcre
+- pexpect
+- pickleshare
+- pillow
+- pip
+- prompt_toolkit
+- pycparser
+- pygments
+- pyparsing
+- pyqt
+- python>=3.6.0
+- python-dateutil
+- pytz
+- pyzmq
+- qt
+- qtconsole
+- scipy
+- seaborn
+- setuptools
+- simplegeneric
+- sip
+- six
+- sqlite
+- statsmodels
+- testfixtures
+- testpath
+- tk
+- tornado<5
+- tqdm
+- traitlets
+- wcwidth
+- wheel
+- widgetsnbextension
+- xz
+- zeromq
+- pytorch<0.4
+- bcolz
+- prompt_toolkit
+#- pytest
+- pip:
+  - torchvision==0.1.9
+  - opencv-python
+  - isoweek
+  - pandas_summary
+  - torchtext==0.2.3
+  - graphviz
+  - sklearn_pandas
+  - feather-format
+  - plotnine
+  - kaggle-cli
+  - ipywidgets
+  - pdpbox<=0.1.0
+  - treeinterpreter
