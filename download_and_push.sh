@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script shows how to build the Docker image and push it to ECR to be ready for use
+# This script shows how to download the Docker image and push it to ECR to be ready for use
 # by SageMaker.
 
 # The argument to this script is the image name. This will be used as the image on the local
@@ -13,7 +13,6 @@ then
     exit 1
 fi
 
-#chmod +x image_classification/serve
 
 # Get the account number associated with the current IAM credentials
 account=$(aws sts get-caller-identity --query Account --output text)
@@ -43,11 +42,11 @@ fi
 # Get the login command from ECR and execute it directly
 $(aws ecr get-login --region ${region} --no-include-email)
 
-# Download the docker image to local
-# Tag the image download to the repository just created
+# Download the docker image to local,
+# tag the downloaded image to the repository created above,
 # and then push it to ECR.
 
-#Pull the image that is available
+#Download the image that is available
 docker pull mr891gloyf.execute-api.us-west-2.amazonaws.com/image_classification_recycle:latest
 
 docker tag mr891gloyf.execute-api.us-west-2.amazonaws.com/image_classification_recycle:latest ${fullname}
