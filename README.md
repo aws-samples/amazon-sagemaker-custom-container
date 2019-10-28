@@ -68,8 +68,9 @@ If you want to focus your learning on SageMaker features and custom containers a
 
 Region| Launch
 ------|-----
-US East (N. Virginia) | [![Launch Module 1 in us-east-1](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/images/cloudformation-launch-stack-button.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=GPSTEC417-Builder-Session&templateURL=https://aws-workshop-content-rumi.s3-us-west-2.amazonaws.com/SageMaker-Custom-Container/builder_session_setup.json)
 US West (Oregon) | [![Launch Module 1 in us-west-2](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/images/cloudformation-launch-stack-button.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=GPSTEC417-Builder-Session&templateURL=https://aws-workshop-content-rumi.s3-us-west-2.amazonaws.com/SageMaker-Custom-Container/builder_session_setup.json)
+US East (N. Virginia) | [![Launch Module 1 in us-east-1](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/images/cloudformation-launch-stack-button.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=GPSTEC417-Builder-Session&templateURL=https://aws-workshop-content-rumi.s3-us-west-2.amazonaws.com/SageMaker-Custom-Container/builder_session_setup.json)
+
 
 <details>
 <summary><strong>CloudFormation Launch Instructions (expand for details)</strong></summary><p>
@@ -112,7 +113,7 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
        ``` 
     - Run build_and_push.sh
         ``` 
-        >cd SageMaker_Custom_Container     
+        >cd amazon-sagemaker-custom-container     
         >chmod +x build_and_push.sh
         >./build_and_push.sh image_classification_recycle
         ```
@@ -185,7 +186,7 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
 
 1. The function was created with 2 environment variables, called **BUCKET_NAME** and **SAGEMAKER_ENDPOINT_NAME**. The value of each of variable would be empty. Enter the S3 bucket name and SageMaker endpoint name here.
 
-    **BUCKET_NAME** should be *gpstec417-builder-session-[your-account-id]*. Replace *your-account-id* with your account id.  
+    **BUCKET_NAME** should be *gpstec417-builder-session-[region]-[your-account-id]*. Replace *region* with us-west-2 or us-east-1, and *your-account-id* with your own account id.  
 
     **SAGEMAKER_ENDPOINT_NAME** should be *image-classification-recycle* or if you chose your own name, enter the name here. 
 
