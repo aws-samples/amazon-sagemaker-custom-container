@@ -50,8 +50,8 @@ The ideas shown here will work in any language or environment. You'll need to ch
 
 ## Workshop Roadmap
 
-- [Run CloudFormation template](#run-cloudformation-template) to create an [AWS Cloud9](https://aws.amazon.com/cloud9/) environment, a S3 bucket, an IAM role, and a test Lambda function. You will be using the EC2 instance to build the Docker image and push it to ECR. You will configure the test Lambda function to call the SageMaker endpoint. 
-- [Build a Docker container on Cloud9 environment](#build-a-docker-container-on-cloud9-environment)
+- [Run AWS CloudFormation template](#run-cloudformation-template) to create an [AWS Cloud9](https://aws.amazon.com/cloud9/) environment, a S3 bucket, an IAM role, and a test Lambda function. You will be using the EC2 instance to build the Docker image and push it to ECR. You will configure the test Lambda function to call the SageMaker endpoint. 
+- [Build a Docker container](#build-a-docker-container-on-cloud9-environment) on Cloud9 environment.
 - [Create a model object](#create-a-model-object-on-sagemaker) on SageMaker.
 - [Create an endpoint configuration](#create-an-endpoint-configuration-on-sagemaker) on SageMaker.
 - [Create an endpoint](#create-an-endpoint) on SageMaker.
@@ -64,7 +64,7 @@ The ideas shown here will work in any language or environment. You'll need to ch
 
 If you are comfortable provisioning an EC2 instance and creating a Lambda function, you can skip below and go ahead follow [this section](#optional-launch-ec2-instance) instead.
 
-If you want to focus your learning on SageMaker features and custom containers and let CloudFormation handle setting up the environment and test function, select the region below. Click on the **Launch stack** link and it will bring up a CloudFormation console with the template loaded. 
+If you want to focus your learning on SageMaker features and building a custom container and let [CloudFormation](https://aws.amazon.com/cloudformation/) handle setting up the environment and test function, select a region from the following. Click on the **Launch stack** link and it will bring up a CloudFormation console with the template loaded. The template will create a Cloud9 IDE, a S3 bucket, and a Lambda function. 
 
 Region| Launch
 ------|-----
@@ -217,7 +217,7 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
 
 ## (Optional) Launch EC2 Instance
 
-**If you used CloudFormation to launch EC2 instance, skip this section.**
+**If you used CloudFormation to launch Cloud9 to build Docker container, skip this section.**
 
 <details>
 <summary><strong>EC2 Instance Launch Instructions (expand for details)</strong></summary><p>
