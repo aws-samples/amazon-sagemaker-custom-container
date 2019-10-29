@@ -95,6 +95,8 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
     > git clone https://github.com/aws-samples/amazon-sagemaker-custom-container.git
     ``` 
     
+    ![c9OpenIDE](./images/c9OpenIDE.png)
+
     Before moving on, you want to increase the ESB volume size as building the Docker container for SageMaker deployment takes much space. You can accomplish that by [running resize.sh](https://docs.aws.amazon.com/cloud9/latest/user-guide/move-environment.html) script provided. 
 
     ``` 
