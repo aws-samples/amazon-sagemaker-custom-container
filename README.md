@@ -104,7 +104,7 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
     >sh resize.sh 40
     ``` 
 
-    Run build_and_push.sh
+    Run build_and_push.sh by running the following commands. This script will create an ECR repository, build the custom container image and push it to the repository. The argument of the script is the repository name. 
 
     ```   
     >chmod +x build_and_push.sh
