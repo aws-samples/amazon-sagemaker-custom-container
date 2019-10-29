@@ -51,7 +51,7 @@ The ideas shown here will work in any language or environment. You'll need to ch
 ## Workshop Roadmap
 
 - [Run CloudFormation template](#run-cloudformation-template) to create an [AWS Cloud9](https://aws.amazon.com/cloud9/) environment, a S3 bucket, an IAM role, and a test Lambda function. You will be using the EC2 instance to build the Docker image and push it to ECR. You will configure the test Lambda function to call the SageMaker endpoint. 
-- [Build a Docker container on Cloud9 environment]()
+- [Build a Docker container on Cloud9 environment](#build-a-docker-container-on-cloud9-environment)
 - [Create a model object](#create-a-model-object-on-sagemaker) on SageMaker.
 - [Create an endpoint configuration](#create-an-endpoint-configuration-on-sagemaker) on SageMaker.
 - [Create an endpoint](#create-an-endpoint) on SageMaker.
@@ -110,20 +110,21 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
     ```
     This step will take 15-20 minutes.
 
+1. Run the following commands to copy the contents of data and model folders to your S3 bucket (the bucket has to be in the same region as the region you will be using SageMaker). The model folder contains the sample train-competed model to deploy. The data folder contains test images for making an inference on the model. 
 
-1. After the script completes, go to ECR console and see the repo and image that were created by executing **build_and_push.sh** in the previous step. Copy the image URI. We will use this when we create the model object on SageMaker. 
-
-    <account_number>.dkr.ecr.us-west-2.amazonaws.com/image_classification_recycle:latest
-
-    ![ecr](./images/ecr.png)
-
-1. Go back to the EC2 Instance Connect, run the following commands to copy the contents of data and model folders to your S3 bucket (the bucket has to be in the same region as the region you will be using SageMaker) 
     ``` 
     aws s3 cp ./data/glass_bottle.jpg s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/data/glass_bottle.jpg
     aws s3 cp ./data/paper.jpg s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/data/paper.jpg
     aws s3 cp ./data/plastic_bottle.jpg s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/data/plastic_bottle.jpg
     aws s3 cp ./model/model.tar.gz s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/model/model.tar.gz
     ``` 
+
+1. Go to ECR console and see the repo and image that were created by executing **build_and_push.sh** in the previous step. Copy the image URI. We will use this when we create the model object on SageMaker in the next step. 
+
+    <account_number>.dkr.ecr.us-west-2.amazonaws.com/image_classification_recycle:latest
+
+    ![ecr](./images/ecr.png)
+
 
 ## Create a Model Object on SageMaker
 
