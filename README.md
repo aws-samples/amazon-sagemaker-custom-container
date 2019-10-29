@@ -50,8 +50,8 @@ The ideas shown here will work in any language or environment. You'll need to ch
 
 ## Workshop Roadmap
 
-- [Run CloudFormation template](#run-cloudformation-template) to create an [Amazon EC2](https://aws.amazon.com/ec2/) instance, a S3 bucket, an IAM role, and a test Lambda function. You will be using the EC2 instance to build the Docker image and push it to ECR. You will configure the test Lambda function to call the SageMaker endpoint. 
-- [Connect to EC2 instance](#connect-to-ec2-instance) via EC2 Instance Connect. 
+- [Run CloudFormation template](#run-cloudformation-template) to create an [AWS Cloud9](https://aws.amazon.com/cloud9/) environment, a S3 bucket, an IAM role, and a test Lambda function. You will be using the EC2 instance to build the Docker image and push it to ECR. You will configure the test Lambda function to call the SageMaker endpoint. 
+- [Build a Docker container on Cloud9 environment]()
 - [Create a model object](#create-a-model-object-on-sagemaker) on SageMaker.
 - [Create an endpoint configuration](#create-an-endpoint-configuration-on-sagemaker) on SageMaker.
 - [Create an endpoint](#create-an-endpoint) on SageMaker.
@@ -83,40 +83,31 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
 </p></details>
 
 
+## Build a Docker container on Cloud9 environment
 
-## Connect to EC2 Instance
+1. Go to the Cloud9 console. Click on **Open IDE**. 
 
-1. On the AWS Management Console, type **EC2** in **Find Services** searchbox.  Select EC2 on the list. This will bring you to the EC2 console homepage. 
+    ![c9Dashboard](./images/c9Dashboard.png)
 
-1. Select **Instances** on the left navigation pane.  
+1. Clone the github repo by running the following command:
 
-    ![ec2Console](./images/ec2Console.png)
+    ``` 
+    > git clone https://github.com/aws-samples/amazon-sagemaker-custom-container.git
+    ``` 
+    
+    Before moving on, you want to increase the ESB volume size as building the Docker container for SageMaker deployment takes much space. You can accomplish that by [running resize.sh](https://docs.aws.amazon.com/cloud9/latest/user-guide/move-environment.html) script provided. 
 
-1. Look for *GPSTEC417-Builder-Session* tagged instance. Make sure the instance is in *running* state. If running, select the instance by clicking on the checkbox on the left. Then click on the **Connect** button next to Launch Instance blue button. 
+    ``` 
+    >cd amazon-sagemaker-custom-container   
+    >sh resize.sh 40
+    ``` 
 
-    ![ec2LaunchedInstance](./images/ec2LaunchedInstance.png)
+    Run build_and_push.sh
 
-    It will bring up **Connect To Your Instance** window. Choose *EC2 Instance Connection* option and leave User name as default. Click **Connect** blue button. 
-
-    ![ec2ConnectToInstance](./images/ec2ConnectToInstance.png)
-
-1. After you are connected to your EC2 instance, do the following:
-
-    - Set up your instance to access your AWS account resources, using the following command. You will need **Access Key ID** and **Secret Access Key**. If you don't have them and don't know how to get them, follow instructions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).  
-        ``` 
-        aws configure
-        ``` 
-
-    - Clone the github repo
-       ``` 
-        > git clone https://github.com/aws-samples/amazon-sagemaker-custom-container.git
-       ``` 
-    - Run build_and_push.sh
-        ``` 
-        >cd amazon-sagemaker-custom-container     
-        >chmod +x build_and_push.sh
-        >./build_and_push.sh image_classification_recycle
-        ```
+    ```   
+    >chmod +x build_and_push.sh
+    >./build_and_push.sh image_classification_recycle
+    ```
     This step will take 15-20 minutes.
 
 
@@ -128,10 +119,10 @@ It will take a few minutes for CloudFormation to complete provisioning of EC2 in
 
 1. Go back to the EC2 Instance Connect, run the following commands to copy the contents of data and model folders to your S3 bucket (the bucket has to be in the same region as the region you will be using SageMaker) 
     ``` 
-    aws s3 cp ./data/glass_bottle.jpg s3://your-bucket-name/SageMaker_Custom_Container/data/glass_bottle.jpg
-    aws s3 cp ./data/paper.jpg s3://your-bucket-name/SageMaker_Custom_Container/data/paper.jpg
-    aws s3 cp ./data/plastic_bottle.jpg s3://your-bucket-name/SageMaker_Custom_Container/data/plastic_bottle.jpg
-    aws s3 cp ./model/model.tar.gz s3://your-bucket-name/SageMaker_Custom_Container/model/model.tar.gz
+    aws s3 cp ./data/glass_bottle.jpg s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/data/glass_bottle.jpg
+    aws s3 cp ./data/paper.jpg s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/data/paper.jpg
+    aws s3 cp ./data/plastic_bottle.jpg s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/data/plastic_bottle.jpg
+    aws s3 cp ./model/model.tar.gz s3://gpstec417-builder-session-<region>-<your-account-id>/SageMaker_Custom_Container/model/model.tar.gz
     ``` 
 
 ## Create a Model Object on SageMaker
